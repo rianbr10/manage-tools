@@ -19,7 +19,7 @@ mongoose.connect('mongodb+srv://USUARIO:SENHA@tool.ibww1.mongodb.net/tool?retryW
 
 # Uso da API
 
-Para executar a api, digite no seguinte comando no terminal da pasta Tools:
+Para executar a api, digite o seguinte comando no terminal da pasta Tools:
 ```javascript
 nodemon bin/server.js
 ```
