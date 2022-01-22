@@ -1,0 +1,211 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api de gerenciamento de ferramentas",
+    "description": "Esta api tem como objetivo gerenciar ferramentas, com ela é possivel realizar cadastro de ferramentas, visualizar todas ferramentas cadastradas, editar e excluir ferramentas.",
+    "contact": {
+      "email": "rian10brunelli@gmail.com" 
+    },
+    "version": "1.0.0"
+  },
+  "servers": [ {
+    "url": "http://localhost:3000",
+    "description": "Api local"
+  } ],
+  "paths": {
+    "/tools": {
+      "post": {
+        "summary": "Cadastrar ferramentas",
+        "description": "Está rota é responsável por cadastrar novas ferramentas.",
+        "tags": ["Tools"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tool"
+              },
+              "examples":{
+                "tool": {
+                  "value": {
+                    "title": "Martelo",
+                    "link": "https://www.mercadolivre.com.br/ferramentas/martelo",
+                    "description": "Um martelo de aço.",
+                    "tags": [
+                      "Martelo",
+                      "Ferramenta"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Something went wrong"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Tool"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools/{tag}": {
+      "get": {
+        "description": "Esta rota é responsável por listar ferramentas conforme uma tag escolhida.",
+        "summary": "Esta rota é responsável por listar ferramentas conforme uma tag escolhida.",
+        "tags": ["Tools"],
+        "parameters": [ {
+          "tags": "tags",
+          "in": "query",
+          "description": "Tag para buscar ferramentas específicas",
+          "required": "true"
+        } ],
+        "responses": {
+          "400": {
+            "description": "Something went wrong"
+          },
+          "200": {
+            "description": "Sucess",
+            "content": {
+              "application/json": {
+                "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Tool"
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tool": {
+      "get": {
+        "summary": "Listar ferramentas",
+        "description": "Está rota é responsável por listar todas as ferramentas cadastradas.",
+        "tags": ["Tools"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tool"
+              },
+              "examples":{
+                "tool": {
+                  "value": {
+                    "title": "Martelo",
+                    "link": "https://www.mercadolivre.com.br/ferramentas/martelo",
+                    "description": "Um martelo de aço.",
+                    "tags": [
+                      "Martelo",
+                      "Ferramenta"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Something went wrong"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Tool"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tool/{id}": {
+      "put": {
+        "description": "Esta rota é responsável por fazer alterações nas informações da ferramenta.",
+        "summary": "Esta rota é responsável por fazer alterações nas informações da ferramenta.",
+        "tags": ["Tools"],
+        "parameters": [ {
+          "id": "id",
+          "in": "query",
+          "description": "Id para alterar informações de alguma ferramenta",
+          "required": "true"
+        } ],
+        "responses": {
+          "400": {
+            "description": "Something went wrong"
+          },
+          "200": {
+            "description": "Successfully updated!",
+            "content": {
+              "application/json": {
+                "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Tool"
+                    }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tools/{id}": {
+      "delete": {
+        "description": "Esta rota é responsável por deletar uma ferramenta pelo id.",
+        "summary": "Esta rota é responsável por deletar uma ferramenta pelo id.",
+        "tags": ["Tools"],
+        "parameters": [ {
+          "id": "id",
+          "in": "query",
+          "description": "Id para deletar uma ferramenta",
+          "required": "true"
+        } ],
+        "responses": {
+          "400": {
+            "description": "Something went wrong"
+          },
+          "200": {
+            "description": "Sucess"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Tool": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
