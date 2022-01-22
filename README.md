@@ -188,3 +188,6 @@ Exemplo de retorno:
 ```json
 {}
 ```
+
+Você também pode acessar a documentação do Swagger da API, acessando a seguinte rota no navegador
+> http://localhost:3000/api-docs
